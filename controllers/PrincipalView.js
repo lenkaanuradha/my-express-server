@@ -18,7 +18,7 @@ export const getPrincipalView = async (req, res) => {
 export const editUsers = async (req, res) => {
     try {
         const updatedUser = await Users.findByIdAndUpdate(req.params.user_id, {$set : req.body},{new:true});
-        console.log(updatedUser)
+        console.log(updatedUser,"updatedUser")
     
         res.status(200).json({ success: "true" , updatedUser:updatedUser});
     } catch (error) {

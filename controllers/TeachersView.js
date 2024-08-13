@@ -25,7 +25,7 @@ export const getTeachersView = async (req, res) => {
       studentObj.push(student)
     }
 
-    // console.log(studentObj, "studentObj");
+    console.log(studentObj, "studentObj");
 
     res.json({ success: "true", studentObj });
   } catch (error) {
