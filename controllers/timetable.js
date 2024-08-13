@@ -5,7 +5,7 @@ export const createtimeTable = async (req, res) => {
   try {
     const { classroom, subject, startTime, endTime, day } = req.body;
    console.log(classroom,subject,startTime, endTime,day)
-    const classRoom = await Classroomdb.find({name:classroom});
+    const classRoom = await Classroomdb.findOne({name:classroom});
     if (!classRoom) {
       return res.status(404).json({ success: "false", msg: "Classroom not found!" });
     }
