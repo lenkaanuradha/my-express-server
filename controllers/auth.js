@@ -63,10 +63,10 @@ export const login = async (req, res,next) => {
     if (!match) {
       return res.status(400).json({ msg: "Password does not match" });
     }
-  console.log("h",user._id,user.isAdmin,process.env.JWT)
+ 
     const token = jwt.sign({ id: user._id, isAdmin: user.isAdmin }, process.env.JWT);
     console.log(token,"token")
-    const { password, isAdmin, name, ...otherDetails } = user._doc;
+    const { password, role,isAdmin, name, ...otherDetails } = user._doc;
 
     res
       .status(200)
@@ -76,6 +76,7 @@ export const login = async (req, res,next) => {
         isAdmin: isAdmin,
         token: token,
         username: name,
+        role:role
       });
   } catch (error) {
     console.log(error)
