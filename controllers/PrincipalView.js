@@ -1,10 +1,12 @@
 import Users from "../models/Users.js";
+import TimeTablenew from "../models/timetable.js"
 export const getPrincipalView = async (req, res) => {
   try {
     const teacherObjects = await Users.find({role:"teacher"});
     const studentObjects = await Users.find({role:"student"});
- 
-    res.json({ success: "true" ,teacherObjects:teacherObjects,studentObjects:studentObjects});
+    const alltimetables= await TimeTablenew.find({});
+       console.log("hello",alltimetables)
+    res.json({ success: "true" ,teacherObjects:teacherObjects,studentObjects:studentObjects , alltimetables:alltimetables});
   } catch (error) {
     console.error(error);
     res
@@ -18,8 +20,8 @@ export const getPrincipalView = async (req, res) => {
 export const editUsers = async (req, res) => {
     try {
         const updatedUser = await Users.findByIdAndUpdate(req.params.user_id, {$set : req.body},{new:true});
-        console.log(updatedUser,"updatedUser")
-    
+       
+      
         res.status(200).json({ success: "true" , updatedUser:updatedUser});
     } catch (error) {
       console.log(error)
